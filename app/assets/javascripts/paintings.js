@@ -18,7 +18,7 @@ window.onload = init;
     
     var clickX;
     var clickY;
-    var clickDrag = new Array();
+    var clickDrag;
     var paint;
 
     $.ajax({
@@ -27,6 +27,7 @@ window.onload = init;
       success: function(response) {
         clickX = response['clickXArray']
         clickY = response['clickYArray']
+        clickDrag = response['clickDragArray']
         console.log(clickX.length)
         redraw()
       },
