@@ -4,7 +4,14 @@
 
 window.onload = init;
 
+  clickX;
+  clickY;
+  clickDrag;
+  paint;
+
+
   function init(){
+
     var canvasDiv = document.getElementById('canvasDiv');
     canvas = document.createElement('canvas');
     canvas.setAttribute('width', 490);
@@ -16,11 +23,6 @@ window.onload = init;
     }
     context = canvas.getContext("2d");
     
-    var clickX;
-    var clickY;
-    var clickDrag;
-    var paint;
-
     $.ajax({
       url: 'http://localhost:3000/paintings/today',
       type: 'GET',
@@ -28,7 +30,6 @@ window.onload = init;
         clickX = response['clickXArray']
         clickY = response['clickYArray']
         clickDrag = response['clickDragArray']
-        console.log(clickX.length)
         redraw()
       },
       error: function(err) {
@@ -40,7 +41,6 @@ window.onload = init;
 
     // mouse down
     $('#canvas').mousedown(function(e){
-      console.log(this)
       var mouseX = e.pageX - this.offsetLeft;
       var mouseY = e.pageY - this.offsetTop;
         
@@ -84,7 +84,6 @@ window.onload = init;
       context.lineJoin = "miter";
       context.lineWidth = 5;
       
-      console.log(clickX)
       for(var i=0; i < clickX.length; i++) {
         context.beginPath();
         if(clickDrag[i] && i){
