@@ -15,13 +15,27 @@ window.onload = init;
       canvas = G_vmlCanvasManager.initElement(canvas);
     }
     context = canvas.getContext("2d");
-
-    var clickX = new Array();
-    var clickY = new Array();
+    
+    var clickX;
+    var clickY;
     var clickDrag = new Array();
     var paint;
+
+    $.ajax({
+      url: 'http://localhost:3000/paintings/today',
+      type: 'GET',
+      success: function(response) {
+        clickX = response['clickXArray']
+        clickY = response['clickYArray']
+        console.log(clickX.length)
+        redraw()
+      },
+      error: function(err) {
+        console.log(err)
+      }
+    });
+
     
-    redraw()
 
     // mouse down
     $('#canvas').mousedown(function(e){
@@ -68,7 +82,8 @@ window.onload = init;
       context.strokeStyle = "#df4b26";
       context.lineJoin = "miter";
       context.lineWidth = 5;
-          
+      
+      console.log(clickX)
       for(var i=0; i < clickX.length; i++) {
         context.beginPath();
         if(clickDrag[i] && i){
