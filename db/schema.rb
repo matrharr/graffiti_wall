@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160925182511) do
   create_table "paintings", force: :cascade do |t|
     t.integer  "clickXArray",                 array: true
     t.integer  "clickYArray",                 array: true
-    t.integer  "clickDrayArray",              array: true
+    t.boolean  "clickDragArray",              array: true
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

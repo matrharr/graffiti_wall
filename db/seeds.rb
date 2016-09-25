@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Painting.create(clickXArray: [50,50,50], clickYArray: [50,51,52], clickDragArray: [true, true, true])
