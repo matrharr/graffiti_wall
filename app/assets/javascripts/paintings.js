@@ -7,10 +7,21 @@ window.onload = init;
   clickX;
   clickY;
   clickDrag;
+  clickColor;
   paint;
+
+  
+  
 
 
   function init(){
+
+    colorPurple = "#cb3594";
+    colorGreen = "#659b41";
+    colorYellow = "#ffcf33";
+    colorBrown = "#986928";
+
+    curColor = colorPurple;
 
     var canvasDiv = document.getElementById('canvasDiv');
     canvas = document.createElement('canvas');
@@ -27,9 +38,12 @@ window.onload = init;
       url: 'http://localhost:3000/paintings/today',
       type: 'GET',
       success: function(response) {
-        clickX = response['clickXArray']
-        clickY = response['clickYArray']
-        clickDrag = response['clickDragArray']
+        clickX = response['clickXArray'];
+        clickY = response['clickYArray'];
+        clickDrag = response['clickDragArray'];
+        clickColor = response['clickColorArray'];
+        console.log(response)
+        
         redraw()
       },
       error: function(err) {
@@ -74,14 +88,16 @@ window.onload = init;
       clickX.push(x);
       clickY.push(y);
       clickDrag.push(dragging);
+      clickColor.push(curColor);
+      console.log(clickColor)
+      
     }
 
 
     function redraw(){
       context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
       
-      context.strokeStyle = "#df4b26";
-      context.lineJoin = "miter";
+      context.lineJoin = "round";
       context.lineWidth = 5;
       
       for(var i=0; i < clickX.length; i++) {
@@ -93,6 +109,7 @@ window.onload = init;
          }
          context.lineTo(clickX[i], clickY[i]);
          context.closePath();
+         context.strokeStyle = clickColor[i];
          context.stroke();
       }
     }

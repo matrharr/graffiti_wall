@@ -4,14 +4,13 @@ $(document).ready(function() {
 });
 
 var saveAddition = function(e) {
-      console.log(window.clickX)
-      console.log(window.clickY)
-      console.log(window.clickDrag)
+      console.log(clickColor)
       e.preventDefault()
       data = {
               'clickXArray' : window.clickX,
               'clickYArray' : window.clickY,
-              'clickDragArray' : window.clickDrag
+              'clickDragArray' : window.clickDrag,
+              'clickColorArray' : window.clickColor
                 }
 
       $.ajax({

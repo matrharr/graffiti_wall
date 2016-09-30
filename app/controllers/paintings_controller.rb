@@ -2,18 +2,19 @@ class PaintingsController < ApplicationController
 
   def today
     @today_painting = Painting.find(1)
-      if request.xhr?
-        render json: @today_painting
-      end
+    if request.xhr?
+      render json: @today_painting
+    end
   end
 
   def save_addition
-   params['clickXArray'].map!(&:to_i)
-   params['clickYArray'].map!(&:to_i)
-   params['clickDragArray'].map!(&:to_b)
+    params['clickXArray'].map!(&:to_i)
+    params['clickYArray'].map!(&:to_i)
+    params['clickDragArray'].map!(&:to_b)
+    # params['clickColorArray'].map!(&:to_i)
     
     @painting = Painting.find(1)
-    @painting.update(clickXArray: params['clickXArray'], clickYArray: params['clickYArray'], clickDragArray: params['clickDragArray'])
+    @painting.update(clickXArray: params['clickXArray'], clickYArray: params['clickYArray'], clickDragArray: params['clickDragArray'], clickColorArray: params['clickColorArray'])
   end
 
 

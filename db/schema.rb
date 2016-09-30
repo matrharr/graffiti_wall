@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925182511) do
+ActiveRecord::Schema.define(version: 20160930200916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "paintings", force: :cascade do |t|
-    t.integer  "clickXArray",                 array: true
-    t.integer  "clickYArray",                 array: true
-    t.boolean  "clickDragArray",              array: true
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "clickXArray",                  array: true
+    t.integer  "clickYArray",                  array: true
+    t.boolean  "clickDragArray",               array: true
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "clickColorArray",              array: true
   end
 
 end
