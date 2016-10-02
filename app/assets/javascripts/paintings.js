@@ -10,9 +10,6 @@ window.onload = init;
   clickColor;
   paint;
 
-  
-  
-
 
   function init(){
 
@@ -21,7 +18,28 @@ window.onload = init;
     colorYellow = "#ffcf33";
     colorBrown = "#986928";
 
-    curColor = colorPurple;
+    curColor = colorBrown;
+
+    $('#green').on('click', function(e){
+      e.preventDefault();
+      curColor = colorGreen;
+    });
+
+    $('#purple').on('click', function(e){
+      e.preventDefault();
+      curColor = colorPurple;
+    });
+
+    $('#yellow').on('click', function(e){
+      e.preventDefault();
+      curColor = colorYellow;
+    });
+
+    $('#brown').on('click', function(e){
+      e.preventDefault();
+      curColor = colorBrown;
+    });
+
 
     var canvasDiv = document.getElementById('canvasDiv');
     canvas = document.createElement('canvas');
