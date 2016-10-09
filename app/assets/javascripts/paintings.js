@@ -4,63 +4,22 @@
 
 window.onload = init;
 
-  clickX;
-  clickY;
-  clickDrag;
-  clickColor;
-  paint;
-
+  // clickX;
+  // clickY;
+  // clickDrag;
+  // clickColor;
+  // paint;
 
   function init(){
-
-    colorPurple = "#cb3594";
-    colorGreen = "#659b41";
-    colorYellow = "#ffcf33";
-    colorBrown = "#986928";
-
-    curColor = colorBrown;
-
-    $('#green').on('click', function(e){
-      e.preventDefault();
-      curColor = colorGreen;
-    });
-
-    $('#purple').on('click', function(e){
-      e.preventDefault();
-      curColor = colorPurple;
-    });
-
-    $('#yellow').on('click', function(e){
-      e.preventDefault();
-      curColor = colorYellow;
-    });
-
-    $('#brown').on('click', function(e){
-      e.preventDefault();
-      curColor = colorBrown;
-    });
-
-
-    var canvasDiv = document.getElementById('canvasDiv');
-    canvas = document.createElement('canvas');
-    canvas.setAttribute('width', 490);
-    canvas.setAttribute('height', 220);
-    canvas.setAttribute('id', 'canvas');
-    canvasDiv.appendChild(canvas);
-    if(typeof G_vmlCanvasManager != 'undefined') {
-      canvas = G_vmlCanvasManager.initElement(canvas);
-    }
-    context = canvas.getContext("2d");
     
     $.ajax({
       url: 'http://localhost:3000/paintings/today',
       type: 'GET',
       success: function(response) {
-        clickX = response['clickXArray'];
-        clickY = response['clickYArray'];
-        clickDrag = response['clickDragArray'];
-        clickColor = response['clickColorArray'];
-        console.log(response)
+        window.clickX = response['clickXArray'];
+        window.clickY = response['clickYArray'];
+        window.clickDrag = response['clickDragArray'];
+        window.clickColor = response['clickColorArray'];
         
         redraw()
       },
@@ -107,7 +66,6 @@ window.onload = init;
       clickY.push(y);
       clickDrag.push(dragging);
       clickColor.push(curColor);
-      console.log(clickColor)
       
     }
 
@@ -117,6 +75,8 @@ window.onload = init;
       
       context.lineJoin = "round";
       context.lineWidth = 5;
+      context.shadowBlur = 0;
+      context.shadowColor = 'rgb(0, 0, 0)';
       
       for(var i=0; i < clickX.length; i++) {
         context.beginPath();
