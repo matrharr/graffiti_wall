@@ -3,23 +3,25 @@
 // code that should be taken care of right away
 
 window.onload = init;
-
   // clickX;
   // clickY;
   // clickDrag;
   // clickColor;
-  // paint;
+paint = false;
+
+clickBrush = [];
 
   function init(){
-    
+
     $.ajax({
       url: 'http://localhost:3000/paintings/today',
       type: 'GET',
       success: function(response) {
-        window.clickX = response['clickXArray'];
-        window.clickY = response['clickYArray'];
-        window.clickDrag = response['clickDragArray'];
-        window.clickColor = response['clickColorArray'];
+        window.clickX = response['clickXArray'] || [];
+        window.clickY = response['clickYArray'] || [];
+        window.clickDrag = response['clickDragArray']||[];
+        window.clickColor = response['clickColorArray'] || [];
+        window.clickWidth = response['clickWidthArray'] || [];
         
         redraw()
       },
