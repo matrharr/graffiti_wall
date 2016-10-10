@@ -10,7 +10,8 @@ var saveAddition = function(e) {
               'clickXArray' : window.clickX,
               'clickYArray' : window.clickY,
               'clickDragArray' : window.clickDrag,
-              'clickColorArray' : window.clickColor
+              'clickColorArray' : window.clickColor,
+              'clickWidthArray' : window.clickWidth
                 }
 
       $.ajax({

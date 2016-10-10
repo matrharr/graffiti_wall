@@ -8,13 +8,15 @@ class PaintingsController < ApplicationController
   end
 
   def save_addition
+    p params
     params['clickXArray'].map!(&:to_i)
     params['clickYArray'].map!(&:to_i)
     params['clickDragArray'].map!(&:to_b)
     # params['clickColorArray'].map!(&:to_i)
+    params['clickWidthArray'].map!(&:to_i)
     
     @painting = Painting.find(1)
-    @painting.update(clickXArray: params['clickXArray'], clickYArray: params['clickYArray'], clickDragArray: params['clickDragArray'], clickColorArray: params['clickColorArray'])
+    @painting.update(clickXArray: params['clickXArray'], clickYArray: params['clickYArray'], clickDragArray: params['clickDragArray'], clickColorArray: params['clickColorArray'], clickWidthArray: params['clickWidthArray'])
   end
 
 

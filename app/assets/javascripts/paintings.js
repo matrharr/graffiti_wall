@@ -89,6 +89,7 @@ clickBrush = [];
          }
          context.lineTo(clickX[i], clickY[i]);
          context.closePath();
+         context.lineWidth = clickWidth[i];
          context.strokeStyle = clickColor[i];
          context.stroke();
       }
