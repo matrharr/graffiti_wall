@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+  console.log('docu ready')
   var canvasDiv = document.getElementById('canvasDiv');
   canvas = document.createElement('canvas');
   canvas.setAttribute('width', 490);

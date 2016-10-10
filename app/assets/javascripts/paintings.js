@@ -68,18 +68,20 @@ clickBrush = [];
       clickY.push(y);
       clickDrag.push(dragging);
       clickColor.push(curColor);
-      
+      clickWidth.push(window.lineWidth)
     }
+
 
 
     function redraw(){
       context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
       
-      context.lineJoin = "round";
-      context.lineWidth = 5;
-      context.shadowBlur = 0;
-      context.shadowColor = 'rgb(0, 0, 0)';
-      
+      // context.lineJoin = "round";
+      // context.lineWidth = window.lineWidth
+      // context.shadowBlur = 0;
+      // context.shadowColor = 'rgb(0, 0, 0)';
+
+
       for(var i=0; i < clickX.length; i++) {
         context.beginPath();
         if(clickDrag[i] && i){
