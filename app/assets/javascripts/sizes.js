@@ -17,5 +17,9 @@ $(document).ready(function() {
       window.lineWidth = 3
     })
 
+    $('#really-small-line').on('click', function(e){
+      e.preventDefault()
+      window.lineWidth = 1
+    })
 
 });

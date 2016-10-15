@@ -7,9 +7,8 @@ window.onload = init;
   // clickY;
   // clickDrag;
   // clickColor;
-paint = false;
+  paint = false;
 
-clickBrush = [];
 
   function init(){
 
@@ -22,7 +21,8 @@ clickBrush = [];
         window.clickDrag = response['clickDragArray']||[];
         window.clickColor = response['clickColorArray'] || [];
         window.clickWidth = response['clickWidthArray'] || [];
-        
+        window.clickBrush = []
+        console.log('init')
         redraw()
       },
       error: function(err) {
@@ -39,7 +39,7 @@ clickBrush = [];
         
       paint = true;
       addClick(mouseX, mouseY);
-      redraw();
+      // redraw();
     });
 
 
@@ -47,7 +47,8 @@ clickBrush = [];
     $('#canvas').mousemove(function(e){
       if(paint){
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-        redraw();
+        clickBrush[clickBrush.length-1].draw(clickBrush.length-1)
+        // redraw();
       }
     });
 
@@ -68,7 +69,11 @@ clickBrush = [];
       clickY.push(y);
       clickDrag.push(dragging);
       clickColor.push(curColor);
-      clickWidth.push(window.lineWidth)
+      clickWidth.push(window.lineWidth);
+      console.log(clickWidth)
+      clickBrush.push(window.curBrush);
+      // clickBrush[clickBrush.length-1].draw(clickBrush.length-1)
+      // console.log(clickBrush)
     }
 
 
@@ -76,24 +81,21 @@ clickBrush = [];
     function redraw(){
       context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
       
-      // context.lineJoin = "round";
-      // context.lineWidth = window.lineWidth
-      // context.shadowBlur = 0;
-      // context.shadowColor = 'rgb(0, 0, 0)';
-
+      context.lineJoin = context.lineCap = "round";
 
       for(var i=0; i < clickX.length; i++) {
-        context.beginPath();
-        if(clickDrag[i] && i){
-          context.moveTo(clickX[i-1], clickY[i-1]);
-         }else{
-           context.moveTo(clickX[i]-1, clickY[i]);
-         }
-         context.lineTo(clickX[i], clickY[i]);
-         context.closePath();
-         context.lineWidth = clickWidth[i];
-         context.strokeStyle = clickColor[i];
-         context.stroke();
+        clickBrush[i].draw(i)
+      //   context.beginPath();
+      //   if(clickDrag[i] && i){
+      //     context.moveTo(clickX[i-1], clickY[i-1]);
+      //    }else{
+      //      context.moveTo(clickX[i]-1, clickY[i]);
+      //    }
+      //    context.lineTo(clickX[i], clickY[i]);
+      //    context.closePath();
+      //    context.lineWidth = clickWidth[i];
+      //    context.strokeStyle = clickColor[i];
+      //    context.stroke();
       }
     }
 

@@ -4,8 +4,9 @@ $(document).ready(function() {
   colorGreen = "#659b41";
   colorYellow = "#ffcf33";
   colorBrown = "#986928";
+  colorBlack = 'black'
 
-  curColor = window.colorPurple;
+  curColor = window.colorBlack;
 
     $('#green').on('click', function(e){
       e.preventDefault();
@@ -25,6 +26,11 @@ $(document).ready(function() {
     $('#brown').on('click', function(e){
       e.preventDefault();
       curColor = window.colorBrown;
+    });
+
+    $('#black').on('click', function(e){
+      e.preventDefault();
+      curColor = window.colorBlack;
     });
 });
 
