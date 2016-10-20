@@ -13,7 +13,7 @@ window.onload = init;
   function init(){
 
     $.ajax({
-      url: 'http://ourcavewall.herokuapp.com/paintings/today',
+      url: 'https://ourcavewall.herokuapp.com/paintings/today',
       type: 'GET',
       success: function(response) {
         window.clickX = response['clickXArray'] || [];

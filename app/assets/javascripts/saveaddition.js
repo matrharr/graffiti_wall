@@ -15,7 +15,7 @@ var saveAddition = function(e) {
                 }
 
       $.ajax({
-        url: 'http://localhost:3000/paintings',
+        url: 'https://ourcavewall.herokuapp.com/paintings',
         data: data,
         type: 'PUT',
         success: function(response) {
