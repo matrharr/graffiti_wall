@@ -102,34 +102,94 @@ $(document).ready(function() {
     };
   };
 
+  function slicedBrush() {
+    this.draw = function(i) {
+      window.context.beginPath();
 
-  shadowBrush = new shadowBrush();
-  regularBrush = new regularBrush();
-  furBrush = new furBrush();
-  penBrush = new penBrush();
-
-  curBrush = regularBrush;
-
-  $('#standard').on('click', function(e){
-      e.preventDefault();
-      curBrush = regularBrush;
-    });
-
-  $('#shadow').on('click', function(e){
-      e.preventDefault();
-      curBrush = shadowBrush;
-    });
-
-  $('#fur').on('click', function(e){
-      e.preventDefault();
-      curBrush = furBrush;
-    });
-
-  $('#pen').on('click', function(e){
-      e.preventDefault();
-      curBrush = penBrush;
-    });
+      lastPoint = {x: clickX[i-1], y: clickY[i-1]}
   
+      window.context.lineWidth = clickWidth[i];
+      window.context.strokeStyle = clickColor[i];
+
+      window.context.globalAlpha = 1;
+      window.context.moveTo(lastPoint.x, lastPoint.y);
+      window.context.lineTo(clickX[i], clickY[i]);
+      window.context.stroke();
+      
+      window.context.moveTo(lastPoint.x - 4, lastPoint.y - 4);
+      window.context.lineTo(clickX[i] - 4, clickY[i] - 4);
+      window.context.stroke();
+      
+      window.context.moveTo(lastPoint.x - 2, lastPoint.y - 2);
+      window.context.lineTo(clickX[i] - 2, clickY[i] - 2);
+      window.context.stroke();
+      
+      window.context.moveTo(lastPoint.x + 2, lastPoint.y + 2);
+      window.context.lineTo(clickX[i] + 2, clickY[i] + 2);
+      window.context.stroke();
+      
+      window.context.moveTo(lastPoint.x + 4, lastPoint.y + 4);
+      window.context.lineTo(clickX[i] + 4, clickY[i] + 4);
+      window.context.stroke();
+    };
+  };
+
+
+  function sprayBrush() {
+    this.draw = function(i) {
+      var density = 25;
+
+      function getRandomFloat(min, max) {
+        return Math.random() * (max - min) + clickWidth[i] * 2;
+      };
+
+      window.context.moveTo(clickX[i], clickY[i]);
+      // window.context.lineWidth = clickWidth[i];
+      // window.context.strokeStyle = clickColor[i];
+
+      for (var j = density; j--; ) {
+        var radius = getRandomFloat(0, Math.PI*2);
+        var angle = getRandomFloat(0, 20);
+         window.context.fillRect(clickX[i] + radius * Math.cos(angle), clickY[i] + radius * Math.sin(angle), 1, 1);
+      }
+
+    };
+  };
+
+  shadow = new shadowBrush();
+  standard = new regularBrush();
+  fur = new furBrush();
+  pen = new penBrush();
+  sliced = new slicedBrush();
+  spray = new sprayBrush();
+
+  curBrush = standard;
+
+  $('.brush').on('click', function(e){
+    e.preventDefault
+    var brush_id = $(this).attr('id')
+    switch (brush_id) {
+      case 'spray':
+        curBrush = spray;
+        break;
+      case 'standard':
+        curBrush = standard;
+        break;
+      case 'shadow':
+        curBrush = shadow;
+        break;
+      case 'fur':
+        curBrush = fur;
+        break;
+      case 'sliced':
+        curBrush = sliced;
+        break;
+      case 'pen':
+        curBrush = pen;
+        break;
+    }
+    
+  });
 });
 
 
