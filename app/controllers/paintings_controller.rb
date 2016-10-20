@@ -1,14 +1,13 @@
 class PaintingsController < ApplicationController
 
   def today
-    @today_painting = Painting.find(2)
+    @most_recent_painting = Painting.last
     if request.xhr?
-      render json: @today_painting
+      render json: @most_recent_painting
     end
   end
 
   def save_addition
-    p params
     params['clickXArray'].map!(&:to_i)
     params['clickYArray'].map!(&:to_i)
     params['clickDragArray'].map!(&:to_b)
