@@ -9,11 +9,9 @@ window.onload = init;
   // clickColor;
   paint = false;
 
-
   function init(){
-
     $.ajax({
-      url: 'https://ourcavewall.herokuapp.com/paintings/today',
+      url: 'http://localhost:3000/paintings/today',
       type: 'GET',
       success: function(response) {
         window.clickX = response['clickXArray'] || [];
@@ -79,9 +77,10 @@ window.onload = init;
 
 
     function redraw(){
-      context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+      console.log(window.context)
+      window.context.clearRect(0, 0, window.context.canvas.width, window.context.canvas.height); // Clears the canvas
       
-      context.lineJoin = context.lineCap = "round";
+      window.context.lineJoin = window.context.lineCap = "round";
 
       for(var i=0; i < clickX.length; i++) {
         clickBrush[i].draw(i)

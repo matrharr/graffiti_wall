@@ -41,7 +41,7 @@ $(document).ready(function() {
   };
 
   var img = new Image();
-  img.src = 'https://www.tricedesigns.com/wp-content/uploads/2012/01/brush2.png';
+  img.src = 'http://www.tricedesigns.com/wp-content/uploads/2012/01/brush2.png';
   img.width = 10;
 
   function furBrush() {

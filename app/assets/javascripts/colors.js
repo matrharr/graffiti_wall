@@ -8,6 +8,11 @@ $(document).ready(function() {
 
   curColor = window.colorBlack;
 
+  $('a #go').click(function(e){
+    e.preventDefault();
+    console.log('cmooooon')
+  })
+
     $('#green').on('click', function(e){
       e.preventDefault();
       curColor = window.colorGreen;

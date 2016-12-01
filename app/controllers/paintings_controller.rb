@@ -17,5 +17,8 @@ class PaintingsController < ApplicationController
     @painting.update(clickXArray: params['clickXArray'], clickYArray: params['clickYArray'], clickDragArray: params['clickDragArray'], clickColorArray: params['clickColorArray'], clickWidthArray: params['clickWidthArray'])
   end
 
+  def test
+  end
+
 
 end

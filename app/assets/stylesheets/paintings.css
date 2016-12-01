@@ -1,14 +1,7 @@
 
 #canvas {
-  border: 2px solid black;
+  border: 5px solid black;
 }
 
-#options {
-  /*display: inline-block;*/
-  float: right;
-}
 
-#left-side {
-  /*display: inline-block; */
-  float: left;
-}
+
